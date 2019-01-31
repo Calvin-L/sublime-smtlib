@@ -1,0 +1,62 @@
+%YAML 1.2
+---
+name: SMTLIB
+file_extensions: [smt2]
+scope: source.smtlib2
+
+variables:
+  ident: '[^\(\)\s]+'
+
+contexts:
+  main:
+    - match: \b(assert|echo|eval|push|pop|check-sat|get-model)\b
+      scope: keyword.control.smtlib2
+    - match: ;.*\n
+      scope: comment.smtlib2
+    - match: '"([^"\\]|\\.)*"'
+      scope: string.quoted.double.smtlib2
+    - match: (forall|exists)\s*\(
+      captures:
+        1: variable.function.smtlib2
+      push: arglist
+    - match: \b\d+\b
+      scope: constant.numeric.smtlib2
+    - match: \b(declare-const)\s+({{ident}})
+      captures:
+        1: keyword.control.smtlib2
+        2: entity.name.function
+      push: sort
+    - match: \b(declare-fun)\s+({{ident}})
+      captures:
+        1: keyword.control.smtlib2
+        2: entity.name.function
+    - match: \b(define-fun)\s+({{ident}})
+      captures:
+        1: keyword.control.smtlib2
+        2: entity.name.function
+      push: arglist
+
+  arglist:
+    - match: \(
+      push: arg
+    - match: \)
+      pop: true
+
+  arg:
+    - match: '{{ident}}\s+'
+      scope: variable.parameter.smtlib2
+      set: sort
+
+  sort:
+    - match: \b(Array|Int|Bool|Real)\b
+      scope: storage.type.smtlib2
+    - match: \(
+      push: sort
+    - match: \)
+      pop: true
+
+  exp:
+    - match: \(
+      push: exp
+    - match: \)
+      pop: true
