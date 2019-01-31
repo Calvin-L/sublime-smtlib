@@ -11,7 +11,7 @@ variables:
 
 contexts:
   main:
-    - match: \b(assert|echo|eval|push|pop|check-sat|get-model)\b
+    - match: \b(?:assert|echo|eval|push|pop|reset|reset-assertions|exit|check-sat|check-sat-assuming|get-(?:model|assertions|assignment|info|option|proof|unsat-assumptions|unsat-core|value)|set-(?:info|logic|option))\b
       scope: keyword.control.smtlib2
     - match: ;.*\n
       scope: comment.smtlib2
@@ -28,6 +28,10 @@ contexts:
         1: keyword.control.smtlib2
         2: entity.name.function
       push: sort
+    - match: \b(declare-sort)\s+({{ident}})
+      captures:
+        1: keyword.control.smtlib2
+        2: entity.name.function
     - match: \b(declare-fun)\s+({{ident}})
       captures:
         1: keyword.control.smtlib2

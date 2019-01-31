@@ -21,5 +21,6 @@ with ""quotes""
 and newlines")
 (eval y)
 
-(define-const x #xFFa)
-(define-const y #b010)
+(define-fun x () Int #xFFa)
+(define-fun y () Int #b010)
+(declare-sort MyType)
