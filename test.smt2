@@ -20,3 +20,6 @@ with ""quotes""
 
 and newlines")
 (eval y)
+
+(define-const x #xFFa)
+(define-const y #b010)

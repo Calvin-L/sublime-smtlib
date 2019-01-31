@@ -5,7 +5,9 @@ file_extensions: [smt2]
 scope: source.smtlib2
 
 variables:
-  ident: '[^\(\)\s]+'
+  ident:       '[^\(\)\s]+'
+  hexadecimal: '#x[\dA-Fa-f]+'
+  binary:      '#b[01]+'
 
 contexts:
   main:
@@ -19,7 +21,7 @@ contexts:
       captures:
         1: variable.function.smtlib2
       push: arglist
-    - match: \b\d+\b
+    - match: '\b\d+|{{hexadecimal}}|{{binary}}\b'
       scope: constant.numeric.smtlib2
     - match: \b(declare-const)\s+({{ident}})
       captures:
