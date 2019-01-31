@@ -11,4 +11,12 @@
 (push)
 (pop)
 (echo "hello")
+(echo "hello
+    with a newline")
+(echo "hello ""with inner quotes"" "  also  "another string")
+(echo "hello
+
+with ""quotes""
+
+and newlines")
 (eval y)
