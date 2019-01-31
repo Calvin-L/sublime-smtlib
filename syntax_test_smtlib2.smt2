@@ -1,5 +1,9 @@
 ; SYNTAX TEST "smtlib2.sublime-syntax"
 
+; To run these tests you will need to open this file in Sublime Text.  This
+; file MUST be located in the SMT-LIB package inside your packages directory.
+; Then run Tools > Build from the menu.
+
 ; test syntax
 ; ^^^^^^^^^^^ comment
 
