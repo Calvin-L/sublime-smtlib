@@ -12,6 +12,11 @@
 ;              ^     entity.name
 ;                ^^^ storage.type
 
+(declare-fun y () Int)
+; ^                           keyword
+;            ^                entity.name
+;                 ^^^         storage.type
+
 (declare-fun f (Int Bool) Int)
 ; ^                           keyword
 ;            ^                entity.name
