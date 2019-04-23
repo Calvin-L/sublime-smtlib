@@ -40,7 +40,7 @@ contexts:
       captures:
         1: keyword.control.smtlib2
         2: entity.name.function
-      push: arglist
+      push: [sort, arglist]
 
   # While there is a single regex that can match a whole SMT-LIB string at
   # once, Sublime will never never match a regex across lines.  To support
