@@ -24,6 +24,11 @@
 ;                   ^^^^      storage.type
 ;                         ^^^ storage.type
 
+(assert (or (<= y 0) (> y 0)))
+;        ^^         variable.function
+;            ^^     keyword.operator
+;                 ^ constant.numeric
+
 (assert (forall ((y Int)) (or (<= y 0) (> y 0))))
 ; ^                                   keyword
 ;        ^^^^^^                       variable.function
