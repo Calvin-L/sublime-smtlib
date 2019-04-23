@@ -52,6 +52,8 @@ contexts:
       pop: true
 
   arglist:
+    - match: \(\s*\)
+      pop: true
     - match: \(
       push: arg
     - match: \)
