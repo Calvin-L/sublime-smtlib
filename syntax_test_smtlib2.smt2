@@ -62,5 +62,11 @@ and newlines")
 (eval y)
 
 (define-fun x () Int #xFFa)
-(define-fun y () Int #b010)
+; ^^^^^^^^^                        keyword
+;           ^                      entity.name
+;                ^^^               storage.type
+;                     ^^^^         constant.numeric
+
 (declare-sort MyType)
+; ^^^^^^^^^^^                      keyword
+;             ^^^^^^               entity.name
