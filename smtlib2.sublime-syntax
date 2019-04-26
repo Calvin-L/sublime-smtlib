@@ -31,7 +31,14 @@ contexts:
     - match: \b(declare-sort)\s+({{ident}})
       captures:
         1: keyword.control.smtlib2
-        2: entity.name.function
+        2: entity.name.sort
+    - match: \b(define-sort)\s+({{ident}})
+      captures:
+        1: keyword.control.smtlib2
+        2: entity.name.sort
+    - match: \b(declare-datatypes?)\b
+      captures:
+        1: keyword.control.smtlib2
     - match: \b(declare-fun)\s+({{ident}})
       captures:
         1: keyword.control.smtlib2

@@ -80,3 +80,25 @@ and newlines")
 (declare-sort MyType)
 ; ^^^^^^^^^^^                      keyword
 ;             ^^^^^^               entity.name
+
+
+(define-sort Set (T) (Array T Bool))
+; ^^^^^^^^^^                       keyword
+;            ^^^                   entity.name
+;                     ^^^^^        storage.type
+
+(declare-datatypes ((Value 0)) (
+; ^^^^^^^^^^^^^^^^                 keyword
+;                    ^^^^^         entity.name
+;                          ^       constant.numeric
+  (
+    (VBool (bool-value Bool))
+;    ^^^^^                         entity.name
+;                      ^^^^        storage.type
+    (VInt (int-value Int))
+;    ^^^^                          entity.name
+;                    ^^^           storage.type
+    (VSet (set-value (Set Value))))))
+;    ^^^^                          entity.name
+;                     ^^^          storage.type
+;                         ^^^^^    storage.type
