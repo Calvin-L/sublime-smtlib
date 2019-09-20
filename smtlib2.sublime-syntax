@@ -72,17 +72,23 @@ contexts:
     - include: comments
     - match: \)
       pop: true
+    - match: \S+
+      scope: invalid.smtlib2
 
   param:
     - include: comments
     - match: '\b{{ident}}\b'
       scope: variable.parameter.smtlib2
       pop: true
+    - match: \S+
+      scope: invalid.smtlib2
 
   paramlist:
     - include: comments
     - match: \(
       set: paramlist_inner
+    - match: \S+
+      scope: invalid.smtlib2
 
   paramlist_inner:
     - include: comments
@@ -90,12 +96,16 @@ contexts:
       scope: variable.parameter.smtlib2
     - match: \)
       pop: true
+    - match: \S+
+      scope: invalid.smtlib2
 
   # '(' ( '(' id sort ')' )* ')'
   arglist:
     - include: comments
     - match: \(
       set: arglist_inner
+    - match: \S+
+      scope: invalid.smtlib2
 
   # ( '(' id sort ')' )* ')'
   arglist_inner:
@@ -105,6 +115,8 @@ contexts:
       push: [endparen, sort, param]
     - match: \)
       pop: true
+    - match: \S+
+      scope: invalid.smtlib2
 
   sort:
     - include: comments
@@ -120,6 +132,8 @@ contexts:
       set: [endparen, sort, sort]
     - match: \(
       set: sortlist_inner
+    - match: \S+
+      scope: invalid.smtlib2
 
   # '(' sort* ')'
   sortlist:
@@ -127,6 +141,8 @@ contexts:
     - meta_scope: debug.sortlist.smtlib2
     - match: \(
       set: sortlist_inner
+    - match: \S+
+      scope: invalid.smtlib2
 
   # sort* ')'
   sortlist_inner:
@@ -141,3 +157,5 @@ contexts:
       push: [endparen, sort, sort]
     - match: \)
       pop: true
+    - match: \S+
+      scope: invalid.smtlib2
