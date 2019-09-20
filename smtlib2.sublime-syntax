@@ -16,6 +16,9 @@ contexts:
       scope: keyword.control.smtlib2
     - match: '"'
       push: string
+    - match: \(\s*(>=|<=|=>|\+|-|\*|=|>|<)
+      captures:
+        1: keyword.operator.smtlib2
     - match: \b(forall|exists)\b
       scope: variable.function.smtlib2
       push: arglist
