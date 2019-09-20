@@ -11,10 +11,9 @@ variables:
 
 contexts:
   main:
+    - include: comments
     - match: \b(?:assert|echo|eval|push|pop|reset|reset-assertions|exit|check-sat|check-sat-assuming|get-(?:model|assertions|assignment|info|option|proof|unsat-assumptions|unsat-core|value)|set-(?:info|logic|option))\b
       scope: keyword.control.smtlib2
-    - match: ;.*\n
-      scope: comment.smtlib2
     - match: '"'
       push: string
     - match: \b(forall|exists)\b
@@ -50,6 +49,10 @@ contexts:
         2: entity.name.function
       push: [sort, arglist]
 
+  comments:
+    - match: ;.*\n
+      scope: comment.smtlib2
+
   # While there is a single regex that can match a whole SMT-LIB string at
   # once, Sublime will never never match a regex across lines.  To support
   # multi-line strings, we need an extra scope.
@@ -60,19 +63,23 @@ contexts:
       pop: true
 
   endparen:
+    - include: comments
     - match: \)
       pop: true
 
   param:
+    - include: comments
     - match: '\b{{ident}}\b'
       scope: variable.parameter.smtlib2
       pop: true
 
   paramlist:
+    - include: comments
     - match: \(
       set: paramlist_inner
 
   paramlist_inner:
+    - include: comments
     - match: '\b{{ident}}\b'
       scope: variable.parameter.smtlib2
     - match: \)
@@ -80,11 +87,13 @@ contexts:
 
   # '(' ( '(' id sort ')' )* ')'
   arglist:
+    - include: comments
     - match: \(
       set: arglist_inner
 
   # ( '(' id sort ')' )* ')'
   arglist_inner:
+    - include: comments
     - meta_scope: debug.arglist_inner.smtlib2
     - match: \(
       push: [endparen, sort, param]
@@ -92,6 +101,7 @@ contexts:
       pop: true
 
   sort:
+    - include: comments
     - meta_scope: debug.sort.smtlib2
     - match: \b(Int|Bool|Real)\b
       scope: storage.type.smtlib2
@@ -107,12 +117,14 @@ contexts:
 
   # '(' sort* ')'
   sortlist:
+    - include: comments
     - meta_scope: debug.sortlist.smtlib2
     - match: \(
       set: sortlist_inner
 
   # sort* ')'
   sortlist_inner:
+    - include: comments
     - meta_scope: debug.sortlist_inner.smtlib2
     - match: \b(Int|Bool|Real)\b
       scope: storage.type.smtlib2
