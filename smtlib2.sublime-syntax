@@ -19,6 +19,9 @@ contexts:
     - match: \(\s*(>=|<=|=>|\+|-|\*|=|>|<)
       captures:
         1: keyword.operator.smtlib2
+    - match: \(\s*(or|and|not)\b
+      captures:
+        1: variable.function.builtin.smtlib2
     - match: \b(forall|exists)\b
       scope: variable.function.smtlib2
       push: arglist
