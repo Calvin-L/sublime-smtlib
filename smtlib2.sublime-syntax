@@ -20,7 +20,7 @@ contexts:
     - match: \b(forall|exists)\b
       scope: variable.function.smtlib2
       push: arglist
-    - match: '\b\d+|{{hexadecimal}}|{{binary}}\b'
+    - match: '(\b\d+|{{hexadecimal}}|{{binary}})\b'
       scope: constant.numeric.smtlib2
     - match: \b(declare-const)\s+({{ident}})
       captures:

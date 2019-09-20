@@ -81,6 +81,10 @@ and newlines")
 ;                ^^^               storage.type
 ;                     ^^^^         constant.numeric
 
+(define-fun x0 () Int #xFFa)
+;           ^^                     entity.name
+;            ^                     - constant.numeric
+
 (declare-sort MyType)
 ; ^^^^^^^^^^^                      keyword
 ;             ^^^^^^               entity.name
