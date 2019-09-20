@@ -94,6 +94,7 @@ and newlines")
 ; ^^^^^^^^^^                       keyword
 ;            ^^^                   entity.name
 ;                     ^^^^^        storage.type
+;                             ^^^^ storage.type
 
 (declare-datatypes ((Value 0)) (
 ; ^^^^^^^^^^^^^^^^                 keyword
@@ -110,3 +111,14 @@ and newlines")
 ;    ^^^^                          entity.name
 ;                     ^^^          storage.type
 ;                         ^^^^^    storage.type
+
+(define-fun BigFunc ((S MyType)) Bool
+;^^^^^^^^^^                           keyword
+;           ^^^^^^^                   entity.name
+;                     ^               variable.parameter
+;                                ^^^^ storage.type
+    ; Require that all instances of MyType equal S
+;   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ comment
+    (forall ((T MyType) (i Int)) (= S T)))
+;    ^^^^^^ variable.function
+;                          ^^^ storage.type

@@ -58,35 +58,57 @@ contexts:
     - match: '"'
       pop: true
 
-  arglist:
-    - match: \(\s*\)
-      pop: true
-    - match: \(
-      push: arg
+  endparen:
     - match: \)
       pop: true
 
-  arg:
-    - match: '{{ident}}\s+'
+  param:
+    - match: '\b{{ident}}\b'
       scope: variable.parameter.smtlib2
-      set: sort
+      pop: true
+
+  # '(' ( '(' id sort ')' )* ')'
+  arglist:
+    - match: \(
+      set: arglist_inner
+
+  # ( '(' id sort ')' )* ')'
+  arglist_inner:
+    - meta_scope: debug.arglist_inner.smtlib2
+    - match: \(
+      push: [endparen, sort, param]
+    - match: \)
+      pop: true
 
   sort:
-    - match: \b(Array|Int|Bool|Real)\b
+    - meta_scope: debug.sort.smtlib2
+    - match: \b(Int|Bool|Real)\b
       scope: storage.type.smtlib2
-    - match: \(
-      push: sort
-    - match: \)
       pop: true
+    - match: \b{{ident}}\b
+      pop: true
+    - match: \(\s*(Array)
+      captures:
+        1: storage.type.smtlib2
+      set: [endparen, sort, sort]
+    - match: \(
+      set: sortlist_inner
 
+  # '(' sort* ')'
   sortlist:
-    - match: \(\s*\)
-      pop: true
+    - meta_scope: debug.sortlist.smtlib2
     - match: \(
-      set: sort
+      set: sortlist_inner
 
-  exp:
-    - match: \(
-      push: exp
+  # sort* ')'
+  sortlist_inner:
+    - meta_scope: debug.sortlist_inner.smtlib2
+    - match: \b(Int|Bool|Real)\b
+      scope: storage.type.smtlib2
+    - match: \b{{ident}}\b
+    - match: \(\s*(Array)
+      captures:
+        1: storage.type.smtlib2
+      push: [endparen, sort, sort]
     - match: \)
       pop: true
