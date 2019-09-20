@@ -56,6 +56,10 @@
 ;                            ^     keyword.operator
 ;                                ^ constant.numeric
 
+(define-fun xforall () Int yforall)
+;           ^^^^^^^                - variable.function
+;                          ^^^^^^^ - variable.function
+
 (check-sat)
 (get-model)
 (push)

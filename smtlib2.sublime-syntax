@@ -17,9 +17,8 @@ contexts:
       scope: comment.smtlib2
     - match: '"'
       push: string
-    - match: (forall|exists)\s*\(
-      captures:
-        1: variable.function.smtlib2
+    - match: \b(forall|exists)\b
+      scope: variable.function.smtlib2
       push: arglist
     - match: '\b\d+|{{hexadecimal}}|{{binary}}\b'
       scope: constant.numeric.smtlib2
