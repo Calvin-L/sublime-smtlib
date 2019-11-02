@@ -56,7 +56,7 @@ contexts:
       push: [sort, arglist]
 
   comments:
-    - match: ;.*\n
+    - match: ;.*$
       scope: comment.smtlib2
 
   # While there is a single regex that can match a whole SMT-LIB string at
