@@ -77,7 +77,7 @@ contexts:
 
   param:
     - include: comments
-    - match: '\b{{ident}}\b'
+    - match: '{{ident}}'
       scope: variable.parameter.smtlib2
       pop: true
     - match: \S+
@@ -92,7 +92,7 @@ contexts:
 
   paramlist_inner:
     - include: comments
-    - match: '\b{{ident}}\b'
+    - match: '{{ident}}'
       scope: variable.parameter.smtlib2
     - match: \)
       pop: true
@@ -124,7 +124,7 @@ contexts:
     - match: \b(Int|Bool|Real)\b
       scope: storage.type.smtlib2
       pop: true
-    - match: \b{{ident}}\b
+    - match: '{{ident}}'
       pop: true
     - match: \(\s*(Array)
       captures:
@@ -150,7 +150,7 @@ contexts:
     - meta_scope: debug.sortlist_inner.smtlib2
     - match: \b(Int|Bool|Real)\b
       scope: storage.type.smtlib2
-    - match: \b{{ident}}\b
+    - match: '{{ident}}'
     - match: \(\s*(Array)
       captures:
         1: storage.type.smtlib2

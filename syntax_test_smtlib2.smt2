@@ -253,3 +253,8 @@ and newlines")
 ;                            ^        constant.numeric
     ;comment
     )
+
+(declare-fun $is_init (Int $State) Bool)
+;            ^^^^^^^^                     entity.name
+;                      ^^^                storage.type
+;                                  ^^^^   storage.type
